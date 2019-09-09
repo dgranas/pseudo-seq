@@ -14,7 +14,8 @@ To download notebook from github to local computer:
 
   + Easy method:
   1. Right-click and save this file: https://raw.githubusercontent.com/dgranas/pseudo-seq/master/5-2-19_analysis.ipynb
-  2. Use the terminal to go to the directory containing the file and type `jupyter notebook`
+  2. You will also need the known rRNA sites file: https://raw.githubusercontent.com/dgranas/pseudo-seq/master/Carlile_known_human_SuppT7_updated.csv
+  3. Use the terminal to go to the directory containing these files and type `jupyter notebook`
   
   + Alternate method using git clone:
 1. open terminal and go to directory where you want to put the folder
