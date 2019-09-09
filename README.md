@@ -6,7 +6,7 @@ Jupyter notebook - recommended to install by downloading Anaconda
 
   + https://jupyter.org/install
 
-pysam module - if not installed use `conda install -c bioconda pysam`
+pysam module - if not installed type `conda install -c bioconda pysam` in terminal
 
   + https://anaconda.org/bioconda/pysam
 
