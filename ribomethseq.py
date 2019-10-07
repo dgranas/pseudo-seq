@@ -9,9 +9,29 @@ import os
 import numpy as np
 import sys
 
-def get_rrna_abbreviations():
-    # TODO
-    pass
+def get_rrna_abbreviations(bamfile):
+    '''
+    make a dict to convert long reference names from bam file
+    into shorter abbreviations for the corresponding rRNA genes
+    '''
+    # get the reference names from a bam file
+    samfile = pysam.AlignmentFile(bamfile, 'rb')
+    ref_names = samfile.references
+
+    # make a dict to convert the long name to a short abbreviation (if aligned to rRNA)
+    rrnas = ('5-8S','18S','28S')
+    ref_name_to_abbrev = {}
+    for ref_name in ref_names:
+        found_rrnas = [rrna for rrna in rrnas if rrna in ref_name]
+        if len(found_rrnas) > 1:
+            raise SystemError(f'Found multiple rRNA names in {ref_name}')
+        if not found_rrnas:
+            print(f'Warning: did not find expected rRNA name in {ref_name}')
+            ref_name_to_abbrev[ref_name] = ref_name
+        else:
+            ref_name_to_abbrev[ref_name] = found_rrnas[0]
+
+    return ref_name_to_abbrev
 
 def get_end_count(bamfile):
     '''
