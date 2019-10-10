@@ -15,8 +15,17 @@ def a_score(s):
     Calculate the A score from Birkedal et al
     Supplementary page 6
     '''
-    # TO DO
-    pass
+    s.reset_index(drop=True, inplace=True)
+
+    i = len(s)//2
+    n = s[i]
+
+    l = s[:i]
+    r = s[i+1:]
+    num = 2*n+1
+    den = abs(np.mean(l) - np.std(l,ddof=1))/2 + n + abs(np.mean(r) - np.std(r,ddof=1))/2 + 1
+    a = max(1-num/den, 0)
+    return a
 
 def b_score(s):
     '''
