@@ -104,8 +104,19 @@ def sliding_window(s, flank_size, score_function):
     Note that we add zeroes before and after to allow edge calculations
     Returns a list of scores
     '''
-    # TO DO
-    pass
+    # add zeroes before and after to allow for window calculations
+    print(f'len of s = {len(s)}')
+    zeros = pd.Series([0]*flank_size)
+    s_zeros = pd.concat([zeros, s, zeros])
+    s_zeros.reset_index(drop=True, inplace=True)
+    scores = []
+
+    for i in range(0, len(s_zeros)-2*flank_size):
+        score = score_function(s_zeros[i:i+flank_size*2+1])
+        scores.append(score)
+
+    print(f'len of scores = {len(scores)}')
+    return scores 
 
 def get_rrna_abbreviations(bamfile):
     '''
