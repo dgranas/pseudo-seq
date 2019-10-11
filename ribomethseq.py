@@ -1,6 +1,5 @@
 # 10/6/19
-# Dave Granas
-# Ribomethseq end-counts 
+# Ribomethseq end-counts from Bam file
 
 import pysam
 import collections
