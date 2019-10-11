@@ -42,8 +42,34 @@ def c_score(s):
     calculate the C score from Birkedal et al
     Supplementary page 7
     '''
-    # TO DO
-    pass
+    s.reset_index(drop=True, inplace=True)
+    i = len(s)//2
+    n = s[i]
+    l = s[:i]
+    r = s[i+1:]
+    
+    wl = (0.5, 0.6, 0.7, 0.8, 0.9, 1)
+    wr = (1, 0.9, 0.8, 0.7, 0.6, 0.5)
+    
+    wn_sum = 0
+    w_sum = 0
+    for x, w in enumerate(wl):
+        wn_sum += s[x] * w
+        w_sum += w
+        
+    left = wn_sum / w_sum
+    
+    wn_sum = 0
+    w_sum = 0
+    for x, w in enumerate(wr):
+        wn_sum += s[i + 1 + x] * w
+        w_sum += w
+        
+    right = wn_sum / w_sum
+    
+    denom = (left + right)/2
+    c = max(1-n/denom, 0)
+    return c
 
 def sliding_window(s, flank_size, score_function):
     '''
